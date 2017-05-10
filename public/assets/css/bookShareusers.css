@@ -1,0 +1,19 @@
+.navbar-inverse .navbar-brand {
+	color: #2E6DA4;
+}
+.navbar-right {
+	margin-right: 10px;
+}
+a {
+   outline: 0;
+}
+.img-thumbnail {
+	margin-bottom: 10px;
+}
+
+.panel-body {
+	background:#FFCCFF;
+}
+.errorclass1 {
+	color:red;
+}
