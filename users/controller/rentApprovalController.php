@@ -3,9 +3,11 @@ session_start();
 if(!$_SESSION['user_email']) {
 	header("Location: ../view/bookshareview.php");
 }
-require_once '../../database/dbConnection.php';
 
-class BookApproval {
+require_once '../../autoloader/autoloader.php';
+//require_once '../../database/dbConnection.php';
+
+class rentApprovalController {
 
 	public $user_conn_obj;
 
@@ -17,7 +19,6 @@ class BookApproval {
 		$renter_id = $_GET['renter_id'];
 		$renter_status = $_GET['renter_status'];
 		$book_id = $_GET['book_id'];
-		//print_r($renter_status);
 		if ($renter_status == 'Approved') {
 			$sql = "UPDATE 
 					tbl_book_renter 
@@ -43,9 +44,9 @@ class BookApproval {
 		}
 	}
 }
-$Database = new Database();
-$Database->getConnection();
+$dbConnection = new dbConnection();
+$dbConnection->getConnection();
 
-$BookApproval = new BookApproval($Database->conn);
-$BookApproval->changeBookPermission();
+$rentApprovalController = new rentApprovalController($dbConnection->conn);
+$rentApprovalController->changeBookPermission();
 ?>

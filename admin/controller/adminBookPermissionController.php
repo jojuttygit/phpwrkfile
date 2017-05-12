@@ -3,7 +3,8 @@ session_start();
 if(!$_SESSION['admin_email']) {
 	header("Location: adminLogin.html");
 }
-require_once '../../database/dbConnection.php';
+//require_once '../../database/dbConnection.php';
+require_once '../../autoloader/autoloader.php';
 
 class ChangePermission {
 
@@ -38,9 +39,9 @@ class ChangePermission {
 	}
 
 }
-$Database = new Database();
-$Database->getConnection();
+$dbConnection = new dbConnection();
+$dbConnection->getConnection();
 
-$ChangePermission = new ChangePermission($Database->conn);
+$ChangePermission = new ChangePermission($dbConnection->conn);
 $ChangePermission->changeBookPermission();
 ?>

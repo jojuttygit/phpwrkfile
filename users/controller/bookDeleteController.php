@@ -3,31 +3,27 @@ session_start();
 if(!$_SESSION['user_email']) {
 	header("Location: ../view/bookshareview.php");
 }
-require_once '../../database/dbConnection.php';
+//require_once '../../database/dbConnection.php';
 
-class DeleteBookRecord {
+require_once '../../autoloader/autoloader.php';
 
+class bookDeleteController {
 	public $user_conn_obj;
-
 	public function __construct($connObj) { 
 		$this->user_conn_obj = $connObj;
 	}
-
 	public function deleteBook () {
 		$book_id = $_GET['book_id'];
-
 		$sql = "DELETE 
 				FROM tbl_user_books 
 				WHERE book_id = '$book_id'";
 		$result_set = $this->user_conn_obj->query($sql);
-		echo"<script>location.href='../view/userBooksView.php'</script>";
-		
+		header("Location: ../view/userBooksView.php");	
 	}
-
 }
-$Database = new Database();
-$Database->getConnection();
+$dbConnection = new dbConnection();
+$dbConnection->getConnection();
 
-$DeleteBookRecord = new DeleteBookRecord($Database->conn);
-$DeleteBookRecord->deleteBook();
+$bookDeleteController = new bookDeleteController($dbConnection->conn);
+$bookDeleteController->deleteBook();
 ?>

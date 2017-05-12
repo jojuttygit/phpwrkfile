@@ -1,5 +1,6 @@
 
-<?php  
+<?php
+	define("base_path",'http://localhost/taskphp/BookShare/BookShare');  
     define("DB_HOST", 'localhost');  
     define("DB_USER", 'root');  
     define("DB_PASSWORD", 'flock6454');  

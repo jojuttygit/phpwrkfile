@@ -1,5 +1,5 @@
 <?php
-class Database {
+class dbConnection {
 public $conn;
 	public function getConnection () {
 		require_once '../../config/config.php';

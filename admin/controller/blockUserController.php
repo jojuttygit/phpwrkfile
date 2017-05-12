@@ -3,7 +3,8 @@ session_start();
 if(!$_SESSION['admin_email']) {
 	header("Location: ../view/adminLoginView.html");
 }
-require_once '../../database/dbConnection.php';
+//require_once '../../database/dbConnection.php';
+require_once '../../autoloader/autoloader.php';
 
 class BlockUser {
 
@@ -37,9 +38,9 @@ class BlockUser {
 	}
 
 }
-$Database = new Database();
-$Database->getConnection();
+$dbConnection = new dbConnection();
+$dbConnection->getConnection();
 
-$BlockUser = new BlockUser($Database->conn);
+$BlockUser = new BlockUser($dbConnection->conn);
 $BlockUser->blockMyUser();
 ?>
